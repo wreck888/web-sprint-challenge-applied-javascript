@@ -1,4 +1,6 @@
-const Card = (article) => {
+import axios from "axios";
+
+// const Card = (article) => {
   // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
@@ -17,6 +19,36 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+  const Card = (article) => {
+
+
+  const cardDiv = document.createElement('div');
+  const headlineDiv = document.createElement('div');
+  const authorDiv = document.createElement('div');
+  const imgDiv = document.createElement('div');
+  const cardImg = document.createElement('img');
+  const cardSpan = document.createElement('span');
+
+  cardDiv.appendChild(headlineDiv);
+  cardDiv.appendChild(authorDiv);
+  authorDiv.appendChild(imgDiv);
+  imgDiv.appendChild(cardImg);
+  authorDiv.appendChild(cardSpan);
+
+  cardDiv.classList.add('card');
+  headlineDiv.classList.add('headline')
+  authorDiv.classList.add('author')
+  imgDiv.classList.add('img-container')
+
+  headlineDiv.textContent = article.headline;
+  cardImg.src= article.authorPhoto;
+  cardSpan.textContent = article.authorName;
+
+  cardDiv.addEventListener('click', () => {
+    console.log(article.headline)
+  })
+
+  return cardDiv
 }
 
 const cardAppender = (selector) => {
@@ -28,6 +60,27 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-}
+  
+  // axios.get('http://localhost:5000/api/articles')
+  // .then(resp => {
+  //   // for (let i = 0; i < articles.articles[i].length; i++) {
+  //     console.log(resp)
+  //     document.querySelector(selector).appendChild(Card(resp.data.articles.articles))
+  //   })
+    // Card(resp.data.articles[i])
+    // }
+    // const entryPoint = document.querySelector(selector)
+    // entryPoint.appendChild(Card())
 
+
+  //   resp.data.topics.forEach(topics => {
+      
+  //   document.querySelector(selector).appendChild(Card(topics[i].))
+  // });
+//     })
+}
+axios.get('http://localhost:5000/api/articles')
+  .then(resp => {
+    // for (let i = 0; i < articles.articles[i].length; i++) {
+      console.log(resp)
 export { Card, cardAppender }
