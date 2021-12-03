@@ -1,3 +1,7 @@
+import { throwStatement } from "@babel/types";
+import axios from "axios";
+import { topics } from "../mocks/data";
+
 const Tabs = (topics) => {
   // TASK 3
   // ---------------------
@@ -13,6 +17,21 @@ const Tabs = (topics) => {
   //   <div class="tab">technology</div>
   // </div>
   //
+  const topicsDiv = document.createElement('div');
+  topicsDiv.classList.add('topics');
+
+  for (let i = 0; i < topics.length; i++) {
+    const newTopic = document.createElement('div');
+    newTopic.classList.add('tab')
+    newTopic.textContent = topics[i];
+    topicsDiv.appendChild(newTopic)
+  }
+
+
+
+  
+
+  return topicsDiv
 }
 
 const tabsAppender = (selector) => {
@@ -23,6 +42,15 @@ const tabsAppender = (selector) => {
   // Find the array of topics inside the response, and create the tabs using the Tabs component.
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
-}
+  
 
+  
+  axios.get(`http://localhost:5000/api/topics`) 
+    .then(resp =>{
+    
+      document.querySelector(selector).appendChild(Tabs(topics.topics))
+    
+    })
+
+}
 export { Tabs, tabsAppender }
