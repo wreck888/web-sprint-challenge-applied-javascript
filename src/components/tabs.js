@@ -26,27 +26,7 @@ const Tabs = (topics) => {
     newTopic.textContent = topics[i];
     topicsDiv.appendChild(newTopic)
   }
-
-
-  // const topicsDiv = document.createElement('div');
-  // const javaDiv = document.createElement('div');
-  // const bootDiv = document.createElement('div');
-  // const techDiv = document.createElement('div');
-
-  // topicsDiv.appendChild(javaDiv);
-  // topicsDiv.appendChild(bootDiv);
-  // topicsDiv.appendChild(techDiv);
-  
-  // topicsDiv.classList.add('topics');
-  // javaDiv.classList.add('tab');
-  // bootDiv.classList.add('tab');
-  // techDiv.classList.add('tab');
-
-  // topicsDiv.textContent = topics;
-  // javaDiv.textContent = 'javascript';
-  // bootDiv.textContent = 'bootstrap';
-  // techDiv.textContent = 'technology';
-
+ 
   return topicsDiv
 }
 
@@ -64,19 +44,8 @@ const tabsAppender = (selector) => {
   axios.get(`http://localhost:5000/api/topics`) 
     .then(resp =>{
     
-    
-        document.querySelector(selector).appendChild(Tabs(topics.topics))
-    
-      // resp.data.topics.forEach(topics => {
-      //   document.querySelector(selector).appendChild(Tabs(topics))
-      
-      // })
-      //   for(let i = 0; i < resp.length; i++ ) {
-    //     Tabs(topics[i])
-    //     document.querySelector(selector).appendChild(resp.data.topics[i])
-    //   }
-    //  })
-    
+      document.querySelector(selector).appendChild(Tabs(resp.data.topics))
+        
     })
 
 }

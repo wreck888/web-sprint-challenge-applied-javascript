@@ -1,4 +1,5 @@
 import axios from "axios";
+import { response } from "express";
 
 // const Card = (article) => {
   // TASK 5
@@ -61,26 +62,33 @@ const cardAppender = (selector) => {
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
   
-  // axios.get('http://localhost:5000/api/articles')
-  // .then(resp => {
-  //   // for (let i = 0; i < articles.articles[i].length; i++) {
-  //     console.log(resp)
-  //     document.querySelector(selector).appendChild(Card(resp.data.articles.articles))
-  //   })
-    // Card(resp.data.articles[i])
-    // }
-    // const entryPoint = document.querySelector(selector)
-    // entryPoint.appendChild(Card())
-
-
-  //   resp.data.topics.forEach(topics => {
-      
-  //   document.querySelector(selector).appendChild(Card(topics[i].))
-  // });
-//     })
-}
-axios.get('http://localhost:5000/api/articles')
+  const obj = document.querySelector(selector)
+  axios.get('http://localhost:5000/api/articles')
   .then(resp => {
-    // for (let i = 0; i < articles.articles[i].length; i++) {
-      console.log(resp)
+
+    resp.data.articles.javascript.forEach(element => {
+      document.querySelector(selector).appendChild(Card(element))
+    })
+    resp.data.articles.bootstrap.forEach(element => {
+      document.querySelector(selector).appendChild(Card(element))
+    })  
+    resp.data.articles.technology.forEach(element => {
+      document.querySelector(selector).appendChild(Card(element))
+    })  
+    resp.data.articles.jquery.forEach(element => {
+      document.querySelector(selector).appendChild(Card(element))
+    })  
+    resp.data.articles.node.forEach(element => {
+      document.querySelector(selector).appendChild(Card(element))
+    })  
+    
+})
+
+
+}
+
 export { Card, cardAppender }
+
+
+
+  
